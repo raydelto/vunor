@@ -9,8 +9,9 @@
             "command": "make&&./bin/main",
             "group": {
                 "kind": "build",
-                "isDefault": false
-            }
+                "isDefault": true
+            },
+            "problemMatcher": []
         }
     ]
 }

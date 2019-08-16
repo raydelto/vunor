@@ -5,6 +5,7 @@
 using namespace vunor;
 
 void Resize(GLFWwindow *window, int width, int height);
+std::shared_ptr<Window> Window::_instance;
 
 Window::Window():_width(800), _height(600)
 {
