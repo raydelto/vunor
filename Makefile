@@ -13,11 +13,19 @@ SRC=third-party-code/glad.c
 OBJ=bin/glad.o
 endif
 
-SRC += src/main.cpp
+SRC += src/core/glfw/Window.cpp \
+	   src/core/Node.cpp \
+	   src/core/Scene.cpp \
+	   src/core/Shader.cpp \
+	   src/core/Triangle.cpp 
 
-OBJ += bin/main.o
+OBJ += bin/Window.o \
+	   bin/Node.o \
+	   bin/Scene.o \
+	   bin/Shader.o \
+	   bin/Triangle.o
 
-WARNINGS=-Wall
+WARNINGS=-w
 
 FLAGS=-std=c++14
 
@@ -25,4 +33,4 @@ all:
 	g++ -c -g $(SRC) $(INCLUDES) $(WARNINGS) $(FLAGS)
 	ls bin>/dev/null||mkdir bin
 	mv *.o ./bin
-	g++ -g $(OBJ) $(FRAMEWORKS) $(LIBS) $(INCLUDES) -o bin/main $(WARNINGS) $(FLAGS)
+	g++ -g $(OBJ) src/main.cpp $(FRAMEWORKS) $(LIBS) $(INCLUDES) -o bin/main $(WARNINGS) $(FLAGS)
