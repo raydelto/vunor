@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include "Position.h"
 #ifdef __APPLE__
 #include <glad/glad.h>
 #else
@@ -21,12 +22,15 @@ public:
     void SetDepth(int depth) { _depth = depth; }
     void SetVisible(bool visible) { _visible = visible; }
     bool IsVisible() { return _visible; }
+    void SetPosition(Position position){_position = position; }
+    Position GetPosition() const{ return _position; }
     uint16_t GetId();
 
 protected:
     std::string _name;
     uint8_t _depth;
     bool _visible;
+    Position _position;
 };
 
 } // namespace vunor

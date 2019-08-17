@@ -1,10 +1,13 @@
 #pragma once
 
 #include <string>
-#include "Node.h"
+#include <vector>
+#include "Shape.h"
+#include "Vertex.h"
+
 namespace vunor
 {
-class Triangle: public Node
+class Triangle: public Shape
 {
 public:
     Triangle();
@@ -14,6 +17,8 @@ public:
 private:
     GLuint _VBO;
     GLuint _VAO;
+    std::vector<Vertex> _vertices;
+    Color defaultColor {255.0f, 255.0f, 255.0f};
 };
 
 } // namespace vunor
