@@ -5,14 +5,41 @@
 
 using namespace vunor;
 
-Shader::Shader(std::string vertexShaderSourceFile, std::string fragmentShaderSourceFile)
+const char *vertexShaderSource =
+ R"""(
+#version 330 core
+
+layout (location = 0) in vec3 aPos;
+layout (location = 1) in vec3 aColor;
+
+out vec3 vertexColor;
+
+void main()
+{
+    gl_Position = vec4(aPos, 1.0);
+    vertexColor = aColor;
+}
+)""";
+
+const char *fragmentShaderSource =
+R"""(
+#version 330 core
+in vec3 vertexColor;
+out vec4 fragColor;
+
+void main()
+{
+    fragColor = vec4(vertexColor,1.0);
+}    
+)""";
+
+
+Shader::Shader()
 {
     // vertex shader
     GLint vertexShader, fragmentShader;
     vertexShader = glCreateShader(GL_VERTEX_SHADER);
-    const char *vertexShaderSource = LoadSource(vertexShaderSourceFile);
-    const char *fragmentShaderSource = LoadSource(fragmentShaderSourceFile);
-    glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
+         glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
     glCompileShader(vertexShader);
     // check for shader compile errors
     int success;
@@ -26,6 +53,7 @@ Shader::Shader(std::string vertexShaderSourceFile, std::string fragmentShaderSou
     }
     // fragment shader
     fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+    
     glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
 
     glCompileShader(fragmentShader);
@@ -58,32 +86,4 @@ Shader::Shader(std::string vertexShaderSourceFile, std::string fragmentShaderSou
 void Shader::Use()
 {
     glUseProgram(_id);
-}
-
-const char* Shader::LoadSource(std::string fileName)
-{
-	std::stringstream ss;
-	std::ifstream file;
-
-	try
-	{
-		file.open(fileName, std::ios::in);
-
-		if (!file.fail())
-		{
-			ss << file.rdbuf();
-		}
-		file.close();
-	}
-	catch (std::exception ex)
-	{
-		std::cerr << "Error while  reading " << fileName << " shader filename!" << std::endl;
-	}
-
-	return ss.str().c_str();    
-}
-
-void Shader::Build()
-{
-
 }

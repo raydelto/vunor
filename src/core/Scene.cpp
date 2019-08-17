@@ -5,7 +5,7 @@ using namespace vunor;
 Scene::Scene(): _lastDefaultDepth(0)
 {
     _window = Window::GetInstance();
-    _shader = std::make_unique<Shader>("shader/vertex.glsl", "shader/fragment.glsl");
+    _shader = std::make_unique<Shader>();
 
 }
 

@@ -12,11 +12,9 @@ namespace vunor
 class Shader
 {
     public:
-        Shader(std::string vertexShaderSourceFile, std::string fragmentShaderSourceFile);
+        Shader();
         void Use();
     private:
         GLint _id;
-        const char* LoadSource(std::string fileName);
-        void Build();      
 };
 } // namespace vunor
