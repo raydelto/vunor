@@ -5,37 +5,16 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Vunor Final Debug",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "${workspaceFolder}/bin/main",
-            "args": [],
-            "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
-            "environment": [],
-            "externalConsole": false,
-            "MIMode": "lldb"
-        },
-        {
             "name": "Vunor Debug",
             "type": "cppdbg",
-            "request": "attach",
-            "program": "${workspaceFolder}/bin/main",
-            "processId": "${command:pickProcess}",
-            "MIMode": "lldb"
-        },
-        {
-            "name": "Debug",
-            "type": "cppdbg",
             "request": "launch",
-            "program": "bin/main",
+            "program": "${workspaceFolder}/bin/main",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
-            "MIMode": "lldb",
-            "preLaunchTask": "g++ build active file"
+            "MIMode": "lldb"
         }
     ]
 }
