@@ -7,6 +7,7 @@ namespace vunor
 class Triangle: public Node
 {
 public:
+    Triangle();
     virtual void Init() override;
     virtual void Update() override;
     virtual void Render() override;

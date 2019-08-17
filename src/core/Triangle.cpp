@@ -8,6 +8,11 @@
 
 using namespace vunor;
 
+Triangle::Triangle()
+{
+    Init();
+}
+
 void Triangle::Init()
 {
     // set up vertex data (and buffer(s)) and configure vertex attributes
