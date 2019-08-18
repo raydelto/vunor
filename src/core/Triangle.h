@@ -19,6 +19,10 @@ private:
     GLuint _VAO;
     std::vector<Vertex> _vertices;
     Color defaultColor {255.0f, 255.0f, 255.0f};
+protected:
+    virtual void UpdateVertexBuffer() override;
+private:
+    void CalculateVertices();
 };
 
 } // namespace vunor

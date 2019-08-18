@@ -22,7 +22,7 @@ public:
     void SetDepth(int depth) { _depth = depth; }
     void SetVisible(bool visible) { _visible = visible; }
     bool IsVisible() { return _visible; }
-    void SetPosition(Position position){_position = position; }
+    void SetPosition(Position position);
     Position GetPosition() const{ return _position; }
     uint16_t GetId();
 
@@ -31,6 +31,9 @@ protected:
     uint8_t _depth;
     bool _visible;
     Position _position;
+    bool _changed;
+
+    virtual void UpdateVertexBuffer() = 0;
 };
 
 } // namespace vunor

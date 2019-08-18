@@ -9,6 +9,11 @@
 
 namespace vunor
 {
+enum class Direction
+{
+    X,
+    Y
+};
 
 struct DestroyGLFWWindow
 {
@@ -30,6 +35,10 @@ class Window
         void ShowFPS();
         void ProcessInput();
         void Terminate();
+        void SetSize(unsigned int width, unsigned int height);
+        unsigned int GetWidth()  { return _width; }
+        unsigned int GetHeight() { return _height; }
+        float ToDeviceCoordinates(unsigned int coordinate, Direction direction);
 
     private:
         Window();

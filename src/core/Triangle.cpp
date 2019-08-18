@@ -13,6 +13,21 @@ Triangle::Triangle()
     Init();
 }
 
+void Triangle::UpdateVertexBuffer()
+{
+    if(_changed)
+    {
+        glBindVertexArray(_VAO);
+        glBindBuffer(GL_ARRAY_BUFFER, _VBO);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(_vertices), &_vertices[0], GL_STATIC_DRAW);
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (void *)0);
+        glEnableVertexAttribArray(0);
+
+        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (void *)(3 * sizeof(GLfloat)));
+        glEnableVertexAttribArray(1);
+    }
+}
+
 void Triangle::Init()
 {
     // set up vertex data (and buffer(s)) and configure vertex attributes
@@ -26,14 +41,13 @@ void Triangle::Init()
     glGenVertexArrays(1, &_VAO);
     glGenBuffers(1, &_VBO);
 
-    //Triangle 1
     glBindVertexArray(_VAO);
     glBindBuffer(GL_ARRAY_BUFFER, _VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (void *)0);
     glEnableVertexAttribArray(0);
 
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *)(3 * sizeof(GLfloat)));
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (void *)(3 * sizeof(GLfloat)));
     glEnableVertexAttribArray(1);
 
     //Cleaning up
@@ -47,6 +61,7 @@ void Triangle::Update()
 
 void Triangle::Render()
 {
+    UpdateVertexBuffer();
     glBindVertexArray(_VAO);
     glDrawArrays(GL_TRIANGLES, 0, 3);
     glBindVertexArray(NULL);
