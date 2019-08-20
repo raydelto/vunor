@@ -2,6 +2,7 @@
 
 #include <string>
 #include "Position.h"
+#include "Size.h"
 #ifdef __APPLE__
 #include <glad/glad.h>
 #else
@@ -24,6 +25,8 @@ public:
     bool IsVisible() { return _visible; }
     void SetPosition(Position position);
     Position GetPosition() const{ return _position; }
+    void SetSize(Size size) { _size = size; }
+    Size GetSize() const{ return _size; }
     uint16_t GetId();
 
 protected:
@@ -31,6 +34,7 @@ protected:
     uint8_t _depth;
     bool _visible;
     Position _position;
+    Size _size;
     bool _changed;
 
     virtual void UpdateVertexBuffer() = 0;

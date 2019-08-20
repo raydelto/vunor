@@ -128,7 +128,7 @@ void Window::SetSize(unsigned int width, unsigned int height)
     _height = height;
 }
 
-float Window::ToDeviceCoordinates(unsigned int coordinate, Direction direction)
+float Window::ToDeviceCoordinates(float coordinate, Direction direction)
 {
     switch (direction)
     {
@@ -138,4 +138,10 @@ float Window::ToDeviceCoordinates(unsigned int coordinate, Direction direction)
         return ((coordinate * 2.0f) / _height) - 1.0f;
     }
     assert(false);
+}
+
+void Window::ToDeviceCoordinates(Position &position)
+{
+    position.x = ToDeviceCoordinates(position.x , Direction::X);
+    position.y = ToDeviceCoordinates(position.y , Direction::Y);
 }

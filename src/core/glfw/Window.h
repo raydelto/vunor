@@ -1,5 +1,6 @@
 #pragma once
 #include <memory>
+#include "../Position.h"
 #ifdef __APPLE__
 #include <glad/glad.h>
 #else
@@ -38,7 +39,8 @@ class Window
         void SetSize(unsigned int width, unsigned int height);
         unsigned int GetWidth()  { return _width; }
         unsigned int GetHeight() { return _height; }
-        float ToDeviceCoordinates(unsigned int coordinate, Direction direction);
+        float ToDeviceCoordinates(float coordinate, Direction direction);
+        void ToDeviceCoordinates(Position &position);
 
     private:
         Window();

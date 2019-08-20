@@ -2,10 +2,9 @@
 
 namespace vunor
 {
-struct Position
+struct Size
 {
-    float x;
-    float y;
-    float z;
+    float width;
+    float height;
 };
 } // namespace vunor

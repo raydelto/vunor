@@ -13,7 +13,7 @@ public:
     void SetColor(Color color) { _color = color; }
     Color GetColor() const { return _color; }
 protected:
-    Color _color {255.0f, 255.0f, 255.0f};
+    Color _color {1.0f, 1.0f, 1.0f};
 };
 
 } // namespace vunor
