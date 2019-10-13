@@ -62,7 +62,7 @@ Shader::Shader()
     if (!success)
     {
         glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
-        std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n"
+        std::cerr << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n"
                   << infoLog << std::endl;
     }
 
@@ -76,7 +76,7 @@ Shader::Shader()
     if (!success)
     {
         glGetProgramInfoLog(_id, 512, NULL, infoLog);
-        std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n"
+        std::cerr << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n"
                   << infoLog << std::endl;
     }
     glDeleteShader(vertexShader);
