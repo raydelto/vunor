@@ -23,10 +23,10 @@ void Triangle::UpdateVertexBuffer()
         glBindVertexArray(_VAO);
         glBindBuffer(GL_ARRAY_BUFFER, _VBO);
         glBufferData(GL_ARRAY_BUFFER, _vertices.size() * sizeof(Vertex), &_vertices[0], GL_STATIC_DRAW);
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (void *)0);
+        glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (void *)0);
         glEnableVertexAttribArray(0);
 
-        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (void *)(3 * sizeof(GLfloat)));
+        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (void *)(2 * sizeof(GLfloat)));
         glEnableVertexAttribArray(1);
         _changed = false;
     }
@@ -48,10 +48,10 @@ void Triangle::Init()
     glBindVertexArray(_VAO);
     glBindBuffer(GL_ARRAY_BUFFER, _VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (void *)0);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (void *)0);
     glEnableVertexAttribArray(0);
 
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (void *)(3 * sizeof(GLfloat)));
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (void *)(2 * sizeof(GLfloat)));
     glEnableVertexAttribArray(1);
 
     //Cleaning up
@@ -79,10 +79,9 @@ void Triangle::ComputeVertices()
 
     for(auto &vertex: _vertices)
     {
-        vertex.position.z = -0.5;
         window->ToDeviceCoordinates(vertex.position);
         vertex.color = _color;
-        std::cout << "Vertex: " << vertex.position.x << ","<<vertex.position.y << ","<<vertex.position.z << "," << std::endl;
+        std::cout << "Vertex: " << vertex.position.x << ","<<vertex.position.y << "," << std::endl;
     }
 
 }

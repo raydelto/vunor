@@ -1,3 +1,4 @@
+#include <memory>
 #include <iostream>
 #include "core/Scene.h"
 #include "core/Triangle.h"
