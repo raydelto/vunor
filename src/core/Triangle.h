@@ -11,6 +11,7 @@ class Triangle: public Shape
 {
 public:
     Triangle();
+    ~Triangle();
     virtual void Init() override;
     virtual void Update() override;
     virtual void Render() override;
