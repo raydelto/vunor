@@ -27,7 +27,7 @@ OBJ += bin/Window.o \
 
 WARNINGS=-w
 
-FLAGS=-std=c++14
+FLAGS=-std=c++14 -D _DEBUG
 
 all:
 	g++ -c -g $(SRC) $(INCLUDES) $(WARNINGS) $(FLAGS)

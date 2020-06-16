@@ -17,7 +17,9 @@ Triangle::Triangle()
 
 Triangle::~Triangle()
 {
+    #ifdef _DEBUG
     std::cout << "Freeing up resources" << std::endl;
+    #endif
     glDeleteVertexArrays(1, &_VAO);
     glDeleteBuffers(1, &_VBO);
 }
@@ -71,7 +73,9 @@ void Triangle::ComputeVertices()
     {
         window->ToDeviceCoordinates(vertex.position);
         vertex.color = _color;
-        std::cout << "Vertex: " << vertex.position.x << ","<<vertex.position.y << "," << std::endl;
+        #ifdef _DEBUG
+            std::cout << "Vertex: " << vertex.position.x << ","<<vertex.position.y << std::endl;
+        #endif
     }
 
 }
