@@ -31,6 +31,6 @@ FLAGS=-std=c++14 -D _DEBUG
 
 all:
 	g++ -c -g $(SRC) $(INCLUDES) $(WARNINGS) $(FLAGS)
-	ls bin>/dev/null||mkdir bin
-	mv *.o ./bin
+	#ls bin>/dev/null||mkdir bin
+	#mv *.o ./bin
 	g++ -g $(OBJ) src/main.cpp $(FRAMEWORKS) $(LIBS) $(INCLUDES) -o bin/main $(WARNINGS) $(FLAGS)
