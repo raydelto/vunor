@@ -14,7 +14,8 @@ class Shader
     public:
         Shader();
         void Use();
+        GLuint GetId() { return _id; }
     private:
-        GLint _id;
+        GLuint _id;
 };
 } // namespace vunor

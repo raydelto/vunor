@@ -53,6 +53,7 @@ void Scene::Render()
     {
         for(auto &node: depthLevel.second)
         {
+            node->SetProgramId(_shader->GetId());
             node->Render();
         }
     }   

@@ -4,16 +4,17 @@
 #include <vector>
 #include "Node.h"
 #include "Vertex.h"
+#include <glm/glm.hpp>
 
 namespace vunor
 {
 class Shape: public Node
 {
 public:
-    void SetColor(Color color) { _color = color; }
-    Color GetColor() const { return _color; }
+    void SetColor(glm::vec3 color) { _color = color; }
+    glm::vec3 GetColor() const { return _color; }
 protected:
-    Color _color {1.0f, 1.0f, 1.0f};
+    glm::vec3 _color {1.0f, 1.0f, 1.0f};
 };
 
 } // namespace vunor

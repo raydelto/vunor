@@ -1,12 +1,11 @@
 #pragma once
-#include "Color.h"
-#include "Position.h"
+#include <glm/glm.hpp>
 
 namespace vunor
 {
 struct Vertex
 {
-    Position position;
-    Color color;
+    glm::vec2 position;
+    glm::vec3 color;
 };
 } // namespace vunor

@@ -4,6 +4,7 @@
 #include <vector>
 #include "Shape.h"
 #include "Vertex.h"
+#include <glm/glm.hpp>
 
 namespace vunor
 {
@@ -23,6 +24,13 @@ protected:
     virtual void UpdateVertexBuffer() override;
 private:
     void ComputeVertices();
+    glm::mat4 _model;
+    glm::mat4 _view;
+    glm::mat4 _projection;
+    GLuint _modelLocation;
+    GLuint _viewLocation;
+    GLuint _projectionLocation;
+    bool _uniformsInitialized = false;
 };
 
 } // namespace vunor

@@ -2,13 +2,21 @@
 
 using namespace vunor;
 
-uint16_t Node::GetId()
+int Node::_instanceCount = 0;
+
+Node::Node()
 {
-    static int id = 0;
-    return id++;
+    _id = _instanceCount;
+    _instanceCount++;
+    _position= glm::vec2(0.0f,0.0f);
 }
 
-void Node::SetPosition(Position position)
+uint16_t Node::GetId()
+{
+    return _id;
+}
+
+void Node::SetPosition(glm::vec2 position)
 {
     _position = position; 
     _changed = true;

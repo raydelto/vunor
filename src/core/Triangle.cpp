@@ -6,6 +6,8 @@
 #endif
 #include <GLFW/glfw3.h>
 #include "glfw/Window.h"
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 #include <iostream>
 
 using namespace vunor;
@@ -49,6 +51,14 @@ void Triangle::Init()
 {
     glGenVertexArrays(1, &_VAO);
     glGenBuffers(1, &_VBO);
+
+	glm::vec3 camPos(0.0f, 0.0f, 0.0f);
+	glm::vec3 targetPos(0.0f, 0.0f, -20.0f);
+	glm::vec3 up(1.0f, 0.0f, 0.0f);
+    _view = glm::lookAt(camPos, camPos + targetPos, up);
+    auto window = Window::GetInstance();
+    _projection = glm::ortho( 0.f, static_cast<float>(window->GetWidth()), 0.f, static_cast<float>(window->GetHeight()), -1.f, 1.f );
+    
 }
 
 void Triangle::ComputeVertices()
@@ -56,7 +66,7 @@ void Triangle::ComputeVertices()
     _vertices.clear();
 
     Vertex vertex1;
-    vertex1.position = _position;
+    vertex1.position = {0,0};
     _vertices.emplace_back(vertex1);
 
     Vertex vertex2;
@@ -71,7 +81,7 @@ void Triangle::ComputeVertices()
 
     for(auto &vertex: _vertices)
     {
-        window->ToDeviceCoordinates(vertex.position);
+        // window->ToDeviceCoordinates(vertex.position);
         vertex.color = _color;
         #ifdef _DEBUG
             std::cout << "Vertex: " << vertex.position.x << ","<<vertex.position.y << std::endl;
@@ -86,7 +96,22 @@ void Triangle::Update()
 
 void Triangle::Render()
 {
+    _model = glm::translate(_model, {_position.x , _position.y, 0.0f});
+    if(!_uniformsInitialized)
+    {
+        _modelLocation = glGetUniformLocation(_programId, "model");
+        _viewLocation = glGetUniformLocation(_programId, "view");
+        _projectionLocation = glGetUniformLocation(_programId, "projection");
+        _uniformsInitialized = true;
+    }
+
     UpdateVertexBuffer();
+
+
+    glUniformMatrix4fv(_modelLocation, 1, GL_FALSE, glm::value_ptr(_model));
+    glUniformMatrix4fv(_viewLocation, 1, GL_FALSE, glm::value_ptr(_view));
+    glUniformMatrix4fv(_projectionLocation, 1, GL_FALSE, glm::value_ptr(_projection));
+    
     glBindVertexArray(_VAO);
     glDrawArrays(GL_TRIANGLES, 0, 3);
     glBindVertexArray(NULL);

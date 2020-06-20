@@ -1,14 +1,14 @@
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
 	LIBS = -lGL -lGLEW -lglfw -ldl
-	INCLUDES=-I ./includes
+	INCLUDES=-I ./includes -I ./third-party-code
 endif
 ifeq ($(UNAME_S),Darwin)
 FRAMEWORKS=-framework OpenGL
 
 LIBS= -L/System/Library/Frameworks \
 	  -lglfw
-INCLUDES=-I./include
+INCLUDES=-I./include -I ./third-party-code
 SRC=third-party-code/glad.c
 OBJ=bin/glad.o
 endif
