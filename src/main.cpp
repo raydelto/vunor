@@ -14,8 +14,7 @@ int main()
     std::unique_ptr<Scene> scene = std::make_unique<Scene>();
     std::shared_ptr<Triangle> triangle = std::make_shared<Triangle>();
     triangle->SetSize({200,200});
-
-    // triangle->SetPosition(position);
+    triangle->SetPosition(position);
     triangle->SetColor({0.0f, 1.0f, 0.0f});
     scene->Add(triangle);
 
