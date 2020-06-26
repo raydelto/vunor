@@ -1,6 +1,7 @@
 #include "Window.h"
 #include <iostream>
 #include <sstream>
+#include <cassert>
 
 using namespace vunor;
 
