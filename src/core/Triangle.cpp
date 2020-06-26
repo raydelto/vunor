@@ -52,20 +52,9 @@ void Triangle::Init()
     glGenVertexArrays(1, &_VAO);
     glGenBuffers(1, &_VBO);
 
-    glm::vec3 camPos(0.0f, 0.0f, 0.0f);
-    glm::vec3 targetPos(0.0f, 0.0f, 0.0f);
-    glm::vec3 up(0.0f, 1.0f, 0.0f);
-    _view = glm::lookAt(camPos, camPos + targetPos, up);
     auto window = Window::GetInstance();
-    //_projection = glm::ortho(0.0f,800.0f, 0.0f,600.0f);
     _model = glm::translate(_model, {_position.x , _position.y, 0.0f});
-    // _model = glm::translate(_model, {200.0f , 300.0f, -0.75f});
-    // m_painter->Ortho(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f);
-    // _projection = glm::perspective(45.0f, 4.0f / 3.0f, -1.0f, 1.0f);
-    //_projection =  glm::ortho(0.0f,800.0f,0.0f,600.0f,0.0f,1.0f);
     _projection =  glm::ortho( 0.0f, static_cast<float>(window->GetWidth()), 0.f, static_cast<float>(window->GetHeight()), 0.0f, 1.0f);
-    // glm::ortho( 0.f, static_cast<float>(window->GetWidth()), 0.f, static_cast<float>(window->GetHeight()), -1.f, 1.f );
-    
 }
 
 void Triangle::ComputeVertices()
@@ -73,7 +62,7 @@ void Triangle::ComputeVertices()
     _vertices.clear();
 
     Vertex vertex1;
-    vertex1.position = {0,0};
+    vertex1.position = {_position.x,_position.y};
     _vertices.emplace_back(vertex1);
 
     Vertex vertex2;
@@ -88,7 +77,6 @@ void Triangle::ComputeVertices()
 
     for(auto &vertex: _vertices)
     {
-        // window->ToDeviceCoordinates(vertex.position);
         vertex.color = _color;
         #ifdef _DEBUG
             std::cout << "Vertex: " << vertex.position.x << ","<<vertex.position.y << std::endl;
@@ -107,7 +95,6 @@ void Triangle::Render()
     if(!_uniformsInitialized)
     {
         _modelLocation = glGetUniformLocation(_programId, "model");
-        _viewLocation = glGetUniformLocation(_programId, "view");
         _projectionLocation = glGetUniformLocation(_programId, "projection");
         _uniformsInitialized = true;
     }
@@ -116,7 +103,6 @@ void Triangle::Render()
 
 
     glUniformMatrix4fv(_modelLocation, 1, GL_FALSE, glm::value_ptr(_model));
-    glUniformMatrix4fv(_viewLocation, 1, GL_FALSE, glm::value_ptr(_view));
     glUniformMatrix4fv(_projectionLocation, 1, GL_FALSE, glm::value_ptr(_projection));
     
     glBindVertexArray(_VAO);

@@ -25,7 +25,6 @@ protected:
 private:
     void ComputeVertices();
     glm::mat4 _model;
-    glm::mat4 _view;
     glm::mat4 _projection;
     GLuint _modelLocation;
     GLuint _viewLocation;
