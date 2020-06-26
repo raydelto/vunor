@@ -10,12 +10,12 @@ using namespace vunor;
 
 int main()
 {
-    glm::vec2 position = glm::vec2(400.0f,300.0f);
+    glm::vec2 position = glm::vec2(0.0f,0.0f);
     std::unique_ptr<Scene> scene = std::make_unique<Scene>();
     std::shared_ptr<Triangle> triangle = std::make_shared<Triangle>();
-    triangle->SetSize({200,200});
+    triangle->SetSize({5,5});
     triangle->SetPosition(position);
-    triangle->SetColor({0.0f, 1.0f, 0.0f});
+    triangle->SetColor({1.0f, 0.0f, 0.0f});
     scene->Add(triangle);
 
     // std::shared_ptr<Triangle> triangle2 = std::make_shared<Triangle>();
