@@ -62,7 +62,7 @@ void Triangle::Init()
     // _model = glm::translate(_model, {200.0f , 300.0f, -0.75f});
     // m_painter->Ortho(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f);
     // _projection = glm::perspective(45.0f, 4.0f / 3.0f, -1.0f, 1.0f);
-    _projection =  glm::ortho(0.0f,10.0f,0.0f,10.0f,0.0f,1.0f);
+    _projection =  glm::ortho(0.0f,800.0f,0.0f,600.0f,0.0f,1.0f);
     // glm::ortho( 0.f, static_cast<float>(window->GetWidth()), 0.f, static_cast<float>(window->GetHeight()), -1.f, 1.f );
     
 }
