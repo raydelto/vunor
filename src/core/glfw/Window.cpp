@@ -71,6 +71,16 @@ void Window::Init()
         std::cerr << "Failed to initialize GLEW" << std::endl;
     }
 #endif
+#ifdef _DEBUG
+	GLubyte *vend;
+	GLubyte *rend;
+	GLubyte *ver;
+	vend=(GLubyte *)glGetString(GL_VENDOR);
+	rend=(GLubyte *)glGetString(GL_RENDERER);
+	ver=(GLubyte *)glGetString(GL_VERSION);
+
+    printf("GL_VENDOR: %s\nGL_RENDERER: %s\nGL_VERSION: %s\n", vend,rend,ver);
+#endif
 }
 
 void Window::Terminate()
